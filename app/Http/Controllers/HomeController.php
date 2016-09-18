@@ -7,25 +7,49 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Model\Customer;
 use Illuminate\Support\Facades\Input;
-
-class HomeController extends Controller
+use Illuminate\Support\Facades\Validator;
+class HomeController extends CommonController
 {
     public function index()
     {
-        return view('home.index');
+        return view('home.search');
     }
-    public function searchCustomer()
+    //located at index page, for searching customer.(check if the customer is exist according to its phone number)
+    public function search()
     {
-        $data=[];
         $input=Input::all();
-        $result=Customer::where('phone_no',$input['phoneno'])->get();
-        if(count($result)>0)
+        $result=Customer::where('phoneNo',$input['phoneNo'])->first();
+        if($result) {
+            session(['customer'=>$result]);
+            return view('home.show')->withResult($result);
+        }
+        else
         {
-            $data=['status'=>1,'detail'=>$result[0]];
+            return view('home.add')->withResult($input['phoneNo']);
         }
-        else{
-            $data=['status'=>0];
+    }
+    //located at index page,create a new customer
+    public function create()
+    {
+        $input=Input::except('_token');
+        $validator = Validator::make($input,Customer::$rules
+        );
+
+        if ($validator->fails()) {
+            return redirect()->withErrors($validator)->withReuslt($input['phoneNo']);
         }
-        return $data;
+        else
+        {
+
+            $customer=Customer::create($input);
+            if($customer){
+                session(['customer'=>$customer]);
+                return view('home.show')->withResult($customer);
+            }
+            else{
+              return back();
+            }
+
+        }
     }
 }

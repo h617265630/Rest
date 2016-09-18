@@ -4,17 +4,16 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class OrderItem extends Model
 {
-    protected $table="customers";
+    protected $table="order_item";
     protected $primaryKey='id';
     public $timestamps=false;
     protected $guarded=[];
 
     public static $rules = array(
-       'phoneNo'=>'required',
-        'name'=>'required',
-        'address'=>'required',
-        'creditCard'=>'required'
+        'order_id'=>'required',
+        'item_id'=>'required',
+        'quantity'=>'required',
     );
 }

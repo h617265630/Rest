@@ -12,6 +12,9 @@
 */
 
 Route::get('/','HomeController@index');
+Route::post('/search','HomeController@search');
+Route::post('/create','HomeController@create');
+Route::get('/item/search','ItemController@search');
 Route::get('/item','ItemController@itemContent');
 Route::get('/item/edit/{id}','ItemController@itemEdit');
-Route::any('/search','HomeController@searchCustomer');
+Route::post('/addToOrder/{id}','ItemController@addToOrder');

@@ -1,20 +1,37 @@
 @extends('layouts.home')
 @section('content')
-    <div class="row">
-        <div class="col-md-8">
-            <form class="form" >
-                <div class="form-group">
-                    <input type="text" placeholder="enter  item id" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="look for item" class=" btn btn-primary">
-                </div>
-            </form>
+        <div class="table-responsive">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Detail</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Add to cart</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->detail}}</td>
+                    <td>{{$item->price}}</td>
+                    <form method="post" action="{{url('/addToOrder/'.$item->id)}}">
+                        {{csrf_field()}}
+                    <td>
+                        <select name="quantity" class="form-control input-sm">
+                            <option value="1" selected>1</option>
+                            <option value="0">None</option>
+                        </select>
+                    </td>
+                    <td><input type="submit" class="btn btn-danger" value="add to order"></td>
+                    </form>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
-        <div class="col-md-4">
-            <div class="form-group" >
-               @include('order.index')
-            </div>
-        </div>
-    </div>
 @endsection

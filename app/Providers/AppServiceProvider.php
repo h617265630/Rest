@@ -23,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('App\Http\Support\Contracts\StorageInterface','App\Basket\Basket');
     }
 }

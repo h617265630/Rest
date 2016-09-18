@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Restaurant OS </title>
     <!-- Latest compiled and minified CSS -->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -32,7 +32,35 @@
     </div>
 </nav>
 <div class="container">
-    @yield('content')
+    <div class="row">
+        <div class="col-md-8">
+            <div class="content">
+                @yield('content')
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="jumbotron">
+                <h5>Welcome to Rest OS</h5>
+            </div>
+            <p>JIE HUANG</p>
+            <p>have a nice day</p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>price</th>
+                        <th>quantity</th>
+                        <th>delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <style>
     body{
